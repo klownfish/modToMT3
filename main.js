@@ -32,7 +32,7 @@ async function clicked() {
   let mod = await modParser.parseFile(file.files[0]);
   let output = generateAssembly(mod);   
 
-  let name = file.files[0].name.replace(".mod", ".z80");
+  let name = file.files[0].name.slice(0, -3) + "z80";
   download(output, name, 'text/plain');
 
   log.innerText = "Done!"
