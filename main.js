@@ -1,3 +1,16 @@
+//TODO:
+//variable speed
+/*********************************
+ * By Olof Helgesson
+ * 
+ * modToMT3.js 1.0.0 - 2020-4-22
+ * convert .mod files to Mobile Tunes 3
+ * 
+ * https://github.com/klownfish/modToMT3
+ * 
+ * licensed under LGPLv3
+*****************************************/
+
 "use strict";
 let go = document.getElementById("go");
 let log = document.getElementById("log");
@@ -22,6 +35,17 @@ modParser.periods = { 0: "rest",
   76: "fs4", 71: "g3", 67: "ab3", 64: "a3", 60: "bb3", 57: "b3"
 }
 
+//prompt user to download a string
+function download(text, name, type) {
+  let a = document.getElementById("fileOutput");
+  let file = new Blob([text], {type: type});
+  a.href = URL.createObjectURL(file);
+  a.download = name;
+  a.innerText = "click here to download the converted file";
+  a.click()
+}
+
+
 go.addEventListener("click", clicked)
 
 async function clicked() {
@@ -39,6 +63,7 @@ async function clicked() {
 }
 
 function generateAssembly(mod) {
+  //header
   let output = template;
   output += `title:  .db "${mod.name}",0\n`;
   output += `artist: .db "${mod.name}",0\n`;
@@ -48,12 +73,14 @@ function generateAssembly(mod) {
   output += `\n`;
   output += `song: \n`;
 
+  //pattern order
   for (let i = 0; i < mod.patternOrder.length; i++) {
     output += `  playsection(pattern${mod.patternOrder[i]})\n`;
   }
   output += `  endsong\n`;
   output += `\n`;
 
+  //positions
   for (let i = 0; i < mod.patterns.length; i++) {
     output += `pattern${i}:\n`;
     for (let j = 0; j < mod.patterns[i].length; j++) {
@@ -70,13 +97,4 @@ function generateAssembly(mod) {
   output += `.end\n`
   output += `END`
   return output
-}
-
-function download(text, name, type) {
-  let a = document.getElementById("fileOutput");
-  let file = new Blob([text], {type: type});
-  a.href = URL.createObjectURL(file);
-  a.download = name;
-  a.innerText = "click here to download the converted file";
-  a.click()
 }

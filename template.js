@@ -1,3 +1,4 @@
+//template for the assemly
 let template = 
 `.nolist
 #define note(l1,l2,r1,r2,time) .dw l1+(l2*256)\\.dw r1+(r2*256)\\.dw time

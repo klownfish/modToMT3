@@ -25,6 +25,7 @@ modParser.periods = { 0: "rest",
   107: "c4", 101: "c#4", 95: "d4", 90: "d#4", 85: "e4", 80: "f4", 
   76: "f#4", 71: "g3", 67: "g#3", 64: "a3", 60: "a#3", 57: "b3"
 }
+
 //wrap everything in a scope
 {
   //taken from https://www.quaxio.com/%C2%B5_mod_player_from_scratch/
