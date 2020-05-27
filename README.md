@@ -1,5 +1,5 @@
 # Mod to Mobile Tunes 3
-[hosted on my website](http://www.klownfish.net/other/modtomt3/)
+[hosted on my website](http://www.klownfish.net/posts/mod_to_ti/)
 
 see it in action!
 
